@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ahmad Nurudin — Portofolio Futuristik</title>
+<style>
+  :root{
+    --bg-deep: #050007;
+    --bg-mid: #220033;
+    --accent1: #b34bff;
+    --accent2: #8a3be6;
+    --neon: #7ef0a6;
+    --muted: #cfc3e8;
+    --glass: rgba(255,255,255,0.04);
+  }
+
+  /* reset */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;font-family:Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(138,59,230,0.08), transparent 6%),
+      radial-gradient(circle at 90% 90%, rgba(179,75,255,0.04), transparent 8%),
+      linear-gradient(180deg,var(--bg-deep),var(--bg-mid) 45%, #040006 100%);
+    color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+
+  .container{max-width:1150px;margin:0 auto;padding:28px}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:linear-gradient(180deg, rgba(0,0,0,0.22), rgba(0,0,0,0.08));
+    backdrop-filter:blur(6px);
+  }
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{width:52px;height:52px;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,0.06);box-shadow:0 8px 30px rgba(139,58,221,0.12)}
+  .brand .name{font-weight:700;color:var(--accent1)}
+  nav a{margin-left:18px;color:var(--muted);font-weight:600;transition:all .25s}
+  nav a:hover{color:#fff;transform:translateY(-2px)}
+
+  /* Hero */
+  .hero{
+    min-height:78vh;display:grid;grid-template-columns:1fr 480px;gap:36px;align-items:center;padding:56px 0;position:relative;
+    overflow:visible;
+  }
+  .hero-left{z-index:6;padding-right:8px}
+  .eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#040006;font-weight:700;font-size:13px}
+  h1{font-size:48px;line-height:1.02;margin:18px 0;color:#fff;text-shadow:0 10px 30px rgba(139,58,221,0.12)}
+  .lead{color:var(--muted);max-width:680px;font-size:18px}
+  .ctas{margin-top:22px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;padding:12px 18px;border-radius:12px;color:#050006;font-weight:800;box-shadow:0 14px 50px rgba(139,58,221,0.18);cursor:pointer;outline:none;transition:transform .22s}
+  .btn-primary:hover{transform:translateY(-6px) scale(1.02)}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px 18px;border-radius:12px;color:var(--muted);font-weight:700}
+
+  /* hero right with parallax layers */
+  .hero-right{position:relative;display:flex;justify-content:center;align-items:center}
+  .hero-shape{
+    position:absolute;left:-8%;top:-6%;width:580px;height:420px;border-radius:36px;background:linear-gradient(135deg, rgba(139,58,221,0.12), rgba(138,59,230,0.06));filter:blur(36px);transform:rotate(-6deg);z-index:1;pointer-events:none;
+  }
+  .hero-card{position:relative;width:440px;border-radius:24px;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 30px 80px rgba(0,0,0,0.6);z-index:3;transform-style:preserve-3d;}
+  .hero-card img{width:100%;height:360px;object-fit:cover;border-radius:14px;display:block;transform:translateZ(30px) scale(1.02)}
+  .glow-ring{position:absolute;inset:auto auto -40px -40px;width:520px;height:520px;border-radius:50%;background:conic-gradient(from 180deg at 50% 50%, rgba(179,75,255,0.06), rgba(126,240,166,0.02));filter:blur(30px);z-index:0;pointer-events:none}
+
+  /* sections */
+  section{padding:70px 0}
+  .section-title{display:flex;align-items:flex-start;gap:14px;flex-direction:column;text-align:left}
+  .section-title h2{margin:0;font-size:26px;color:var(--accent1)}
+  .section-title p{margin:6px 0 0;color:var(--muted)}
+
+  .steps{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px}
+  .step{background:var(--glass);padding:18px;border-radius:14px;min-width:220px;flex:1;border:1px solid rgba(255,255,255,0.03);transition:transform .35s,box-shadow .35s}
+  .step:hover{transform:translateY(-8px);box-shadow:0 30px 70px rgba(139,58,221,0.08)}
+  .step h3{margin:0 0 8px;color:#fff}
+  .step p{margin:0;color:var(--muted);font-size:14px}
+
+  /* grid gallery with 3d tilt */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
+  .card{border-radius:12px;padding:10px;background:transparent;overflow:hidden;position:relative;cursor:grab;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.9,.2,1),box-shadow .35s}
+  .card .thumb{border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
+  .card img{width:100%;height:160px;object-fit:cover;display:block;transform-origin:center center;transition:transform .35s}
+  .card .meta{margin-top:10px;color:var(--muted);font-size:14px}
+  .card:hover{transform:translateY(-14px) rotateX(4deg) rotateY(-6deg);box-shadow:0 50px 120px rgba(139,58,221,0.12)}
+  .card:active{cursor:grabbing}
+
+  /* FAQ */
+  .faq-wrap{max-width:900px;margin:18px auto 0}
+  .qa{background:var(--glass);border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.02);transition:all .28s}
+  .q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700}
+  .a{margin-top:10px;color:var(--muted);display:none}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:26px;align-items:start}
+  .contact-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+  .wa-large{background:linear-gradient(90deg,#19c65a,#25d366);color:#001;box-shadow:0 12px 40px rgba(37,211,102,0.12);display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800}
+  .mail-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 14px;border-radius:12px}
+
+  /* floating WA */
+  .wa-float{position:fixed;right:18px;bottom:18px;width:64px;height:64px;border-radius:50%;background:linear-gradient(90deg,#19c65a,#25d366);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(37,211,102,0.15);font-size:28px;z-index:90;transform-origin:center center;animation:float 2.6s ease-in-out infinite}
+  @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+  /* viewer */
+  .viewer{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.8);z-index:100}
+  .viewer img{max-width:92%;max-height:86%;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+
+  /* reveal helper */
+  .reveal{opacity:0;transform:translateY(24px);transition:all .85s cubic-bezier(.2,.9,.2,1)}
+  .reveal.show{opacity:1;transform:none}
+
+  /* small screens */
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr;gap:18px;padding-top:34px}
+    .hero-right{order:-1}
+    .contact-grid{grid-template-columns:1fr}
+    nav{display:none}
+    .container{padding:16px}
+    h1{font-size:34px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container top">
+    <div class="brand">
+      <img src="c:\Users\Hype GLK\Downloads\Untitled design (14).png" alt="Ahmad">
+      <div>
+        <div class="name">Ahmad Nurudin</div>
+        <div style="font-size:12px;color:var(--muted)">Desainer Visual • UI/UX</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#beranda">Beranda</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#karya">Karya</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- HERO -->
+  <section id="beranda" class="hero">
+    <div class="hero-left reveal" style="will-change:transform,opacity">
+      <span class="eyebrow">Portfolio • Desain Futuristik</span>
+      <h1>Mendesain identitas visual yang berenergi & memorable</h1>
+      <p class="lead">Aku membantu brand & kreator tampil percaya diri lewat logo, poster, UI/UX, dan konten visual bergaya modern. Scroll untuk lihat proses, case, dan galeri.</p>
+      <div class="ctas">
+        <a class="btn-primary" href="#karya">Lihat Karya</a>
+        <a class="btn-ghost" href="#kontak">Pesan Sekarang</a>
+      </div>
+
+      <div style="margin-top:28px;display:flex;gap:12px;align-items:center">
+        <div style="width:72px;height:72px;border-radius:12px;background:linear-gradient(90deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800">AD</div>
+        <div>
+          <div style="font-weight:700">Jasa Unggulan</div>
+          <div style="color:var(--muted);font-size:13px">Logo • UI/UX • Poster • Konten Social</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right reveal" data-parallax data-depth="0.12">
+      <div class="hero-shape" aria-hidden="true"></div>
+      <div class="hero-card" id="heroCard">
+        <div class="glow-ring" aria-hidden="true"></div>
+        <img src="c:\Users\Hype GLK\Downloads\Untitled design (13).png" alt="Ahmad Nurudin">
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="tentang" class="reveal">
+    <div class="section-title">
+      <h2>Tentang Saya</h2>
+      <p>Saya menggabungkan estetika & strategi — desain yang tidak hanya cantik tapi juga efektif untuk komunikasi brand.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step"><h3>1. Brief</h3><p>Diskusi kebutuhan, target, dan gaya yang diinginkan.</p></div>
+      <div class="step"><h3>2. Konsep</h3><p>Menghasilkan beberapa arah desain & moodboard.</p></div>
+      <div class="step"><h3>3. Final</h3><p>Finalisasi & penyerahan file siap pakai.</p></div>
+    </div>
+  </section>
+
+  <!-- Editing cases -->
+  <section id="editing" class="reveal">
+    <div class="section-title"><h2>Hasil Editing</h2><p>Contoh before-after, retouch, dan komposisi visual.</p></div>
+    <div class="grid">
+      <div class="card"><div class="thumb"><img src="c:\Users\Hype GLK\Downloads\POPOPO.png" alt=""></div><div class="meta"> Social media</div></div>
+      <div class="card"><div class="thumb"><img src="c:\Users\Hype GLK\Downloads\1 LO.png" alt=""></div><div class="meta">Logo</div></div>
+      <div class="card"><div class="thumb"><img src="c:\New folder\WhatsApp Image 2025-09-24 at 13.49.53_3a48a559.jpg" alt=""></div><div class="meta">Desain Koaos</div></div>
+      <div class="card"><div class="thumb"><img src="d:\Download\Pricelist\2.png" alt=""></div><div class="meta">Poster</div></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="karya" class="reveal">
+    <div class="section-title"><h2>Galeri Karya</h2><p>Beberapa proyek logo, poster, dan UI yang menunjukkan gaya & variasi.</p></div>
+    <div class="grid">
+      <div class="card"><div class="thumb"><img src="c:\Users\Hype GLK\Downloads\Downloads\6 LO.png" alt=""></div><div class="meta">Fead instgram</div></div>
+      <div class="card"><div class="thumb"><img src="c:\Users\Hype GLK\Downloads\pppp.png" alt=""></div><div class="meta">Poster Event</div></div>
+      <div class="card"><div class="thumb"><img src="galeri3.jpg" alt=""></div><div class="meta">UI Concept</div></div>
+      <div class="card"><div class="thumb"><img src="c:\Users\Hype GLK\Downloads\POPOPO.png" alt=""></div><div class="meta">Social Feed</div></div>
+      <div class="card"><div class="thumb"><img src="c:\Users\Hype GLK\Downloads\WhatsApp Image 2025-10-19 at 07.27.49_f97bbe62.jpg" alt=""></div><div class="meta">Branding</div></div>
+      <div class="card"><div class="thumb"><img src="galeri6.jpg" alt=""></div><div class="meta">Illustration</div></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="reveal">
+    <div class="section-title"><h2>FAQ</h2><p>Pertanyaan umum dari klien.</p></div>
+    <div class="faq-wrap">
+      <div class="qa"><div class="q">Berapa lama proses desain?</div><div class="a">Biasanya 1–5 hari untuk logo/sederhana, 3–10 hari untuk paket UI atau branding lengkap.</div></div>
+      <div class="qa"><div class="q">Berapa revisi yang tersedia?</div><div class="a">Saya memberikan 2 revisi gratis untuk paket standar. Paket custom bisa disepakati lebih lanjut.</div></div>
+      <div class="qa"><div class="q">Bagaimana cara memesan?</div><div class="a">Klik tombol WhatsApp, kirim brief singkat atau screenshot referensi.</div></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="kontak" class="reveal">
+    <div class="section-title"><h2>Kontak</h2><p>Siap mulai proyek? Hubungi lewat WhatsApp atau email.</p></div>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-card">
+          <h3>Diskusi & Pemesanan</h3>
+          <p style="color:var(--muted)">Kirim brief singkat (tujuan, ukuran, referensi) lewat WhatsApp, saya akan balas dan bantu proses selanjutnya.</p>
+          <div style="margin-top:14px">
+            <a class="wa-large" href="https://wa.me/6285742357734?text=Halo%20Ahmad%2C%20saya%20ingin%20memesan%20jasa%20desain%20-%20" target="_blank" rel="noopener">💬 Chat via WhatsApp</a>
+            <a class="mail-btn" href="mailto:ahmadnurudin@example.com">✉️ Kirim Email</a>
+          </div>
+          <div style="margin-top:18px;color:var(--muted);font-size:14px"><strong>Nomor WA:</strong> +62 857-4235-7734<br><strong>Email:</strong> ahmadnurudin@example.com</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="contact-card">
+          <h3>Form Cepat</h3>
+          <p style="color:var(--muted)">Isi singkat, tombol akan membuka chat WhatsApp dengan pesan terisi.</p>
+          <form id="quickForm" onsubmit="handleForm(event)">
+            <label style="display:block;margin-top:8px;color:var(--muted)">Nama</label>
+            <input id="fname" type="text" placeholder="Nama kamu" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)" required>
+            <label style="display:block;margin-top:8px;color:var(--muted)">Pesan singkat</label>
+            <textarea id="fmsg" placeholder="Jelaskan kebutuhan singkat..." style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white);min-height:100px" required></textarea>
+            <div style="margin-top:12px;display:flex;gap:12px">
+              <button type="submit" class="wa-large" style="flex:1">Kirim ke WhatsApp</button>
+              <button type="button" class="mail-btn" style="flex:1" onclick="copyEmail()">Salin Email</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:40px 0;text-align:center;color:var(--muted)">© 2025 Ahmad Nurudin • Desainer Visual</footer>
+</main>
+
+<!-- floating wa -->
+<a class="wa-float" href="https://wa.me/6285742357734?text=Halo%20Ahmad%2C%20saya%20ingin%20menanyakan%20jasa%20desain%20Anda." target="_blank" aria-label="Hubungi via WhatsApp">💬</a>
+
+<!-- viewer -->
+<div id="viewer" class="viewer" onclick="closeViewer()"><img id="viewerImg" src="" alt="Preview"></div>
+
+<script>
+/* ===== scroll reveal ===== */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('show');
+  });
+},{threshold:0.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== parallax for hero right ===== */
+document.querySelectorAll('[data-parallax]').forEach(el=>{
+  const depth = parseFloat(el.dataset.depth) || 0.08;
+  window.addEventListener('mousemove', (ev)=>{
+    const w = window.innerWidth, h = window.innerHeight;
+    const x = (ev.clientX - w/2)/w;
+    const y = (ev.clientY - h/2)/h;
+    el.style.transform = `translate3d(${x*depth*140}px, ${y*depth*80}px, 0)`;
+  });
+});
+
+/* ===== card tilt (3D) based on pointer ===== */
+document.querySelectorAll('.card').forEach(card=>{
+  const rect = ()=>card.getBoundingClientRect();
+  card.addEventListener('pointermove', (e)=>{
+    const r = rect();
+    const cx = r.left + r.width/2;
+    const cy = r.top + r.height/2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const rx = (dy / r.height) * -10; // rotateX
+    const ry = (dx / r.width) * 14; // rotateY
+    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-8px)`;
+    card.querySelector('img').style.transform = `scale(1.06) translateZ(30px)`;
+  });
+  card.addEventListener('pointerleave', ()=> {
+    card.style.transform = '';
+    card.querySelector('img').style.transform = '';
+  });
+});
+
+/* ===== viewer popup for images ===== */
+document.querySelectorAll('.card img, .hero-card img').forEach(img=>{
+  img.style.cursor='pointer';
+  img.addEventListener('click', (ev)=>{
+    const src = ev.currentTarget.getAttribute('src');
+    document.getElementById('viewerImg').src = src;
+    document.getElementById('viewer').style.display = 'flex';
+    document.body.style.overflow='hidden';
+  });
+});
+function closeViewer(){
+  document.getElementById('viewer').style.display='none';
+  document.getElementById('viewerImg').src='';
+  document.body.style.overflow='';
+}
+
+/* ===== FAQ accordion ===== */
+document.querySelectorAll('.qa').forEach(qa=>{
+  const q = qa.querySelector('.q');
+  const a = qa.querySelector('.a');
+  q.addEventListener('click', ()=>{
+    const open = a.style.display === 'block';
+    document.querySelectorAll('.faq-wrap .a').forEach(x=>x.style.display='none');
+    if(!open) a.style.display='block';
+    else a.style.display='none';
+  });
+});
+
+/* ===== quick form handler to open WhatsApp with prefilled text ===== */
+function handleForm(e){
+  e.preventDefault();
+  const name = encodeURIComponent(document.getElementById('fname').value.trim());
+  const msg = encodeURIComponent(document.getElementById('fmsg').value.trim());
+  const text = `Halo Ahmad, saya ${name}. ${msg}`;
+  const wa = `https://wa.me/6285742357734?text=${text}`;
+  window.open(wa, '_blank');
+}
+
+/* copy email */
+function copyEmail(){
+  navigator.clipboard && navigator.clipboard.writeText('ahmadnurudin@example.com').then(()=>alert('Email disalin ke clipboard'), ()=>alert('Gagal menyalin email'));
+}
+
+/* polish: add reveal class to some children for nice stagger */
+document.querySelectorAll('.hero-left, .hero-right, .steps .step, .card, .qa, .contact-card').forEach(el=>{
+  el.classList.add('reveal');
+  io.observe(el);
+});
+</script>
+</body>
+</html>
